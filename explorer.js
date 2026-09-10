@@ -74,9 +74,6 @@ const datasets = [
     range: `1–${max}`,
     source: biomassSource,
     history: forestMask,
-    note: [2010, 2020].includes(year)
-      ? `The README’s first description says 2015. The variable name, detailed description, and temporal_coverage specify ${year}, used here.`
-      : null,
   })),
   {
     id: "Forest_timber_volume",
@@ -95,7 +92,6 @@ const datasets = [
       url: "https://doi.org/10.5281/zenodo.13143235",
     },
     history: `Resampled to 100 m. ${forestMask}`,
-    note: "The README’s first description says 2015; its detailed description and temporal_coverage specify 2020, used here. The units are shown exactly as recorded in the README.",
   },
 ];
 
@@ -132,7 +128,6 @@ function renderDetail(dataset) {
       <details class="detail-extra"><summary>Processing & technical metadata</summary><p>${dataset.history}</p>
         <dl class="metadata"><div><dt>NetCDF variable</dt><dd>${dataset.variable}</dd></div><div><dt>No-data value</dt><dd>−9999</dd></div><div><dt>Scale / offset</dt><dd>1 / 0</dd></div><div><dt>Conventions</dt><dd>CF-1.12</dd></div><div><dt>Axis / grid mapping</dt><dd>Z / spatial_ref</dd></div><div><dt>Author</dt><dd>Alexandra Runge · GFZ</dd></div></dl>
       </details>
-      ${dataset.note ? `<details class="detail-extra"><summary>Source metadata note</summary><p>${dataset.note}</p></details>` : ""}
       <details class="detail-extra"><summary>Citation</summary><p>EC Forest Navigator project. Deliverable D2.3, <a href="https://www.forestnavigator.eu/">forestnavigator.eu</a></p></details>
       <div class="metadata-source"><span>Data source</span><a href="${dataset.source.url}" target="_blank" rel="noopener">${dataset.source.name} ↗</a></div>
       <a class="download-button" href="${downloadURL(dataset)}" aria-label="Download ${filename(dataset)}">Download NetCDF <span aria-hidden="true">↓</span></a>
