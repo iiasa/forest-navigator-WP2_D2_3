@@ -1,30 +1,235 @@
-
-    <html>
-    <head>
-        <title>Forest Navigator WP2 D2.3</title>
-        <style>
-            body { font-family: sans-serif; padding: 20px; line-height: 1.5; }
-            .explorer-item { margin: 5px 0; }
-            .folder { color: #007bff; font-weight: bold; text-decoration: none; }
-            .file { color: #28a745; text-decoration: none; }
-            .file:hover { text-decoration: underline; }
-            .header { margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-            .header h1 { margin: 0; color: #333; }
-            .breadcrumb { color: #6c757d; font-size: 0.9em; margin-top: 5px; }
-            ul { list-style-type: none; padding-left: 20px; border-left: 1px dashed #ccc; margin: 5px 0; }
-            li { padding: 2px 0; }
-            .icon { margin-right: 8px; width: 16px; display: inline-block; text-align: center; }
-            summary { cursor: pointer; list-style: none; display: flex; align-items: center; color: #007bff; }
-            summary::before { content: '▶'; display: inline-block; width: 20px; transition: transform 0.2s; font-size: 0.8em; }
-            details[open] > summary::before { transform: rotate(90deg); }
-            details > summary:hover { color: #0056b3; }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <h1>Forest Navigator WP2 D2.3</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173e32" />
+    <meta
+      name="description"
+      content="Explore and download the Forest Navigator forest4model v2 datasets: forest disturbance, aboveground biomass, and timber volume."
+    />
+    <title>Forest Navigator · Data explorer</title>
+    <link rel="icon" type="image/svg+xml" href="forestnavigator-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="explorer.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to datasets</a>
+    <aside class="sidebar">
+      <a
+        class="brand"
+        href="https://www.forestnavigator.eu/"
+        aria-label="Forest Navigator project website"
+        ><img
+          src="forestnavigator-logo.svg"
+          alt="Forest Navigator"
+          width="743"
+          height="350"
+      /></a>
+      <div class="side-rule"></div>
+      <p class="eyebrow">Research collection</p>
+      <nav aria-label="Dataset categories" id="categories">
+        <button class="category active" data-category="all" aria-pressed="true">
+          <span><span class="nav-icon">▦</span>All datasets</span
+          ><span>08</span>
+        </button>
+        <button
+          class="category"
+          data-category="Disturbance"
+          aria-pressed="false"
+        >
+          <span><span class="nav-icon">↯</span>Disturbance</span><span>03</span>
+        </button>
+        <button class="category" data-category="Biomass" aria-pressed="false">
+          <span><span class="nav-icon">♧</span>Biomass</span><span>04</span>
+        </button>
+        <button
+          class="category"
+          data-category="Timber volume"
+          aria-pressed="false"
+        >
+          <span><span class="nav-icon">▤</span>Timber volume</span
+          ><span>01</span>
+        </button>
+      </nav>
+      <div class="resources">
+        <p class="eyebrow">Documentation</p>
+        <a
+          href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/README.md"
+          >Dataset README <span>↗</span></a
+        ><a
+          href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/FN_D2.3_Documentation_final.pdf"
+          target="_blank"
+          rel="noopener"
+          >Deliverable D2.3 <span>↗</span></a
+        >
+      </div>
+      <div class="sidebar-bottom">
+        <span class="edition">v2.0</span>
+        <p>forest4model datacube</p>
+        <div class="side-rule"></div>
+        <a href="https://www.forestnavigator.eu/"
+          >About the project <span>↗</span></a
+        ><span class="side-caption">European forests. In focus.</span>
+      </div>
+    </aside>
+    <main id="main">
+      <header class="topbar">
+        <div>DATA EXPLORER <span>/</span> WP2 · D2.3</div>
+        <a href="mailto:alexandra.runge@gfz.de"
+          >Contact the data team <span>↗</span></a
+        >
+      </header>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="dot"></span> FOREST4MODEL / VERSION 2
+          </p>
+          <h1 id="page-title">
+            A closer look at<br /><em>Europe’s forests.</em>
+          </h1>
         </div>
-        <ul><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Disturbance_agent.nc">Forest4model_v2_Disturbance_agent.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Disturbance_fraction.nc">Forest4model_v2_Disturbance_fraction.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Disturbance_year.nc">Forest4model_v2_Disturbance_year.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Forest_AGB_2010.nc">Forest4model_v2_Forest_AGB_2010.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Forest_AGB_2015.nc">Forest4model_v2_Forest_AGB_2015.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Forest_AGB_2020.nc">Forest4model_v2_Forest_AGB_2020.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Forest_AGB_2022.nc">Forest4model_v2_Forest_AGB_2022.nc</a></li><li><span class="icon">🌐</span><a class="file" href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/Forest4model_v2_Forest_timber_volume.nc">Forest4model_v2_Forest_timber_volume.nc</a></li></ul>
-    </body>
-    </html>
-    
+        <svg
+          class="tree-rings"
+          viewBox="0 0 400 330"
+          fill="none"
+          aria-hidden="true"
+        >
+          <g stroke="currentColor">
+            <path
+              d="M207 18C296-4 378 50 378 151s-68 170-164 162S24 265 22 174 105 41 207 18Z"
+            />
+            <path
+              d="M206 35c83-21 155 32 155 118s-65 150-147 144S41 256 40 175 112 57 206 35Z"
+            />
+            <path
+              d="M203 52c72-22 140 33 140 104s-54 132-128 124S60 248 57 177 123 74 203 52Z"
+            />
+            <path
+              d="M198 70c64-25 127 32 127 91s-50 108-112 102S80 239 77 178 132 96 198 70Z"
+            />
+            <path
+              d="M203 88c50-19 104 24 104 78s-46 85-95 78S97 230 96 179s48-68 107-91Z"
+            />
+            <path
+              d="M204 105c42-16 87 24 85 64s-36 63-78 56-94-6-95-45 43-58 88-75Z"
+            />
+            <path
+              d="M206 123c30-9 65 15 63 47s-28 44-57 39-77-6-75-31 37-46 69-55Z"
+            />
+            <path
+              d="M207 142c23-9 44 8 43 28s-20 27-39 22-54-2-52-18 29-25 48-32Z"
+            />
+            <path
+              d="M207 158c11-4 24 2 23 11s-13 12-23 8-18 1-18-5 7-10 18-14Z"
+            />
+          </g>
+          <path
+            d="M205 0v330M0 170h400"
+            stroke="currentColor"
+            stroke-dasharray="2 7"
+          />
+          <circle cx="207" cy="170" r="4" fill="currentColor" />
+        </svg>
+        <div class="hero-index" aria-hidden="true">
+          EUROPEAN FOREST OBSERVATIONS<br />01 — 08 / DATA COLLECTION
+        </div>
+      </section>
+      <section class="collection-stats" aria-label="Collection overview">
+        <div><strong>08</strong><span>NetCDF datasets</span></div>
+        <div>
+          <strong>100 <small>m</small></strong
+          ><span>Spatial resolution</span>
+        </div>
+        <div><strong>1985–2023</strong><span>Collection time span</span></div>
+        <div><strong>Europe</strong><span>50–60° N · 0–10° E</span></div>
+      </section>
+      <section class="catalog" aria-labelledby="catalog-title">
+        <div class="catalog-heading">
+          <h2 id="catalog-title">Explore the collection</h2>
+          <span class="source-label">EARTH OBSERVATION DATA</span>
+        </div>
+        <div class="toolbar">
+          <label class="search"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 5 5" /></svg
+            ><input
+              type="search"
+              id="search"
+              placeholder="Search datasets, variables, or years…"
+              aria-label="Search datasets" /></label
+          ><label class="sort"
+            >Sort by
+            <select id="sort" aria-label="Sort datasets">
+              <option value="name">Name A–Z</option>
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select></label
+          >
+        </div>
+        <div class="results-meta">
+          <span id="result-count" role="status" aria-live="polite"
+            >8 datasets</span
+          ><span
+            >Select a dataset to view metadata
+            <span aria-hidden="true">↘</span></span
+          >
+        </div>
+        <div class="explorer">
+          <div class="file-list" id="file-list" aria-label="Datasets"></div>
+          <aside
+            class="detail-panel"
+            id="detail-panel"
+            aria-label="Selected dataset metadata"
+          ></aside>
+        </div>
+        <noscript
+          ><p>
+            Enable JavaScript to explore dataset metadata. You can also read the
+            <a
+              href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/README.md"
+              >README</a
+            >.
+          </p></noscript
+        >
+      </section>
+      <footer>
+        <span
+          >Forest Navigator <span class="footer-divider">/</span> EC Deliverable
+          D2.3</span
+        >
+        <nav aria-label="Documentation">
+          <a
+            href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/README.md"
+            >README ↗</a
+          ><span class="footer-divider">/</span
+          ><a
+            href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/FN_D2.3_Documentation_final.pdf"
+            target="_blank"
+            rel="noopener"
+            >Documentation ↗</a
+          >
+        </nav>
+        <span
+          >Data curated by
+          <a href="https://www.gfz.de/en/"
+            >GFZ Helmholtz Centre for Geosciences ↗</a
+          ></span
+        >
+      </footer>
+    </main>
+  </body>
+</html>
