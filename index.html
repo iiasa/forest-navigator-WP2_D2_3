@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#173e32" />
     <meta
       name="description"
-      content="Explore and download the Forest Navigator forest4model v2 datasets: forest disturbance, aboveground biomass, and timber volume."
+      content="Explore and download the Forest Navigator forest4model datacube versions 1 and 2: forest cover, disturbance, biomass, structure, and biodiversity layers."
     />
     <title>Forest Navigator · Data explorer</title>
     <link rel="icon" type="image/svg+xml" href="forestnavigator-logo.svg" />
@@ -61,9 +61,11 @@
       <div class="resources">
         <p class="eyebrow">Documentation</p>
         <a
+          id="doc-readme"
           href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/README.md"
           >Dataset README <span>↗</span></a
         ><a
+          id="doc-pdf"
           href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/FN_D2.3_Documentation_final.pdf"
           target="_blank"
           rel="noopener"
@@ -71,8 +73,8 @@
         >
       </div>
       <div class="sidebar-bottom">
-        <span class="edition">v2.0</span>
-        <p>forest4model datacube</p>
+        <span class="edition" id="edition-badge">v2.0</span>
+        <p id="edition-label">forest4model datacube · D2.3</p>
         <div class="side-rule"></div>
         <a href="https://www.forestnavigator.eu/"
           >About the project <span>↗</span></a
@@ -81,14 +83,17 @@
     </aside>
     <main id="main">
       <header class="topbar">
-        <div>DATA EXPLORER <span>/</span> WP2 · D2.3</div>
+        <div>
+          DATA EXPLORER <span>/</span>
+          <span id="topbar-deliverable">WP2 · D2.3</span>
+        </div>
         <a href="mailto:alexandra.runge@gfz.de"
           >Contact the data team <span>↗</span></a
         >
       </header>
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow">
+          <p class="eyebrow" id="hero-version">
             <span class="dot"></span> FOREST4MODEL / VERSION 2
           </p>
           <h1 id="page-title">
@@ -137,24 +142,49 @@
           />
           <circle cx="207" cy="170" r="4" fill="currentColor" />
         </svg>
-        <div class="hero-index" aria-hidden="true">
+        <div class="hero-index" id="hero-index" aria-hidden="true">
           EUROPEAN FOREST OBSERVATIONS<br />01 — 08 / DATA COLLECTION
         </div>
       </section>
       <section class="collection-stats" aria-label="Collection overview">
-        <div><strong>08</strong><span>NetCDF datasets</span></div>
+        <div>
+          <strong id="stat-count">08</strong><span>NetCDF datasets</span>
+        </div>
         <div>
           <strong>100 <small>m</small></strong
           ><span>Spatial resolution</span>
         </div>
-        <div><strong>1985–2023</strong><span>Collection time span</span></div>
-        <div><strong>Europe</strong><span>50–60° N · 0–10° E</span></div>
+        <div>
+          <strong id="stat-timespan">1985–2023</strong
+          ><span>Collection time span</span>
+        </div>
+        <div>
+          <strong id="stat-extent">Europe</strong
+          ><span id="stat-extent-sub">50–60° N · 0–10° E</span>
+        </div>
       </section>
       <section class="catalog" aria-labelledby="catalog-title">
         <div class="catalog-heading">
           <h2 id="catalog-title">Explore the collection</h2>
           <span class="source-label">EARTH OBSERVATION DATA</span>
         </div>
+        <fieldset class="version-switch" id="version-switch">
+          <legend>Datacube version</legend>
+          <label class="segment"
+            ><input type="radio" name="version" value="v1" /><span
+              class="segment-card"
+              ><strong>Version 1</strong
+              ><small>D2.1 · 2023 · 13 datasets</small></span
+            ></label
+          >
+          <label class="segment"
+            ><input type="radio" name="version" value="v2" checked /><span
+              class="segment-card"
+              ><strong>Version 2</strong
+              ><small>D2.3 · 2025 · 8 datasets</small></span
+            ></label
+          >
+        </fieldset>
         <div class="toolbar">
           <label class="search"
             ><svg
@@ -170,15 +200,26 @@
               type="search"
               id="search"
               placeholder="Search datasets, variables, or years…"
-              aria-label="Search datasets" /></label
-          ><label class="sort"
-            >Sort by
-            <select id="sort" aria-label="Sort datasets">
-              <option value="name">Name A–Z</option>
-              <option value="newest">Newest first</option>
-              <option value="oldest">Oldest first</option>
-            </select></label
-          >
+              aria-label="Search datasets"
+          /></label>
+          <fieldset class="sort" id="sort-group">
+            <legend>Sort</legend>
+            <label class="pill"
+              ><input type="radio" name="sort" value="name" checked /><span
+                >Name A–Z</span
+              ></label
+            >
+            <label class="pill"
+              ><input type="radio" name="sort" value="newest" /><span
+                >Newest</span
+              ></label
+            >
+            <label class="pill"
+              ><input type="radio" name="sort" value="oldest" /><span
+                >Oldest</span
+              ></label
+            >
+          </fieldset>
         </div>
         <div class="results-meta">
           <span id="result-count" role="status" aria-live="polite"
@@ -208,15 +249,17 @@
       </section>
       <footer>
         <span
-          >Forest Navigator <span class="footer-divider">/</span> EC Deliverable
-          D2.3</span
+          >Forest Navigator <span class="footer-divider">/</span>
+          <span id="footer-deliverable">EC Deliverable D2.3</span></span
         >
         <nav aria-label="Documentation">
           <a
+            id="footer-readme"
             href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/README.md"
             >README ↗</a
           ><span class="footer-divider">/</span
           ><a
+            id="footer-pdf"
             href="https://s3.iiasa.ac.at/accelerator-prod/forest-navigator/WP2_D2_3_data/FN_D2.3_Documentation_final.pdf"
             target="_blank"
             rel="noopener"

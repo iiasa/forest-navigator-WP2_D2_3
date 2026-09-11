@@ -24,14 +24,18 @@ a {
   text-decoration: none;
 }
 button,
-input,
-select {
+input {
   font: inherit;
+}
+fieldset {
+  font: inherit;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 button,
 a,
 input,
-select,
 summary {
   -webkit-tap-highlight-color: transparent;
 }
@@ -41,8 +45,9 @@ button {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
-select:focus-visible,
-summary:focus-visible {
+summary:focus-visible,
+.segment-card:focus-within,
+.pill:focus-within {
   outline: 3px solid #9bab53;
   outline-offset: 4px;
 }
@@ -334,18 +339,98 @@ h2 {
 .sort {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  color: var(--muted);
-}
-select {
-  height: 46px;
-  background: transparent;
+  gap: 6px;
   border: 1px solid #cfd6c9;
   border-radius: 4px;
-  padding: 0 30px 0 12px;
+  padding: 4px;
+  background: #fffefa;
+}
+.sort legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.pill input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.pill span {
+  display: inline-block;
+  padding: 11px 13px;
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pill span:hover {
   color: var(--ink);
-  font-size: 12px;
+  background: #eef1e4;
+}
+.pill input:checked + span {
+  background: var(--green);
+  color: #fff;
+}
+.version-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.version-switch legend {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding: 0;
+}
+.segment input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.segment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #cfd6c9;
+  border-radius: 4px;
+  background: #fffefa;
+  padding: 13px 15px;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+}
+.segment-card strong {
+  font-size: 13px;
+}
+.segment-card small {
+  font-size: 10px;
+  color: var(--muted);
+}
+.segment-card:hover {
+  border-color: #9baa8f;
+}
+.segment input:checked + .segment-card {
+  background: #eaf0df;
+  border-color: #8fa274;
+  box-shadow: inset 3px 0 0 #5d7745;
+}
+.segment input:checked + .segment-card small {
+  color: var(--green);
 }
 .results-meta {
   display: flex;
@@ -760,8 +845,11 @@ footer a:hover {
     font-size: 9px;
   }
   .sort {
-    font-size: 0;
-    gap: 0;
+    padding: 3px;
+  }
+  .pill span {
+    padding: 9px 10px;
+    font-size: 10px;
   }
   .results-meta {
     font-size: 9px;
@@ -877,12 +965,10 @@ footer a:hover {
     flex-basis: 100%;
   }
   .sort {
-    font-size: 11px;
-    gap: 10px;
     margin-left: auto;
   }
-  .sort select {
-    height: 34px;
+  .version-switch {
+    grid-template-columns: 1fr;
   }
   .results-meta > span:last-child {
     font-size: 8px;
